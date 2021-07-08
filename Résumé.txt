@@ -1,0 +1,159 @@
+respecter les methodes et nom de l'ennoncé
+respecter la PEP8 à vérifier avec flake8
+
+"main.py" -> fichier point d'entrée
+"classes" dossier -> package python
+"settings" pacakge python -> fichier de config
+"content" -> contenu de la blockchain
+
+classe "Chain" ->  gère l'ensemble des chaines (?)
+attribut "blocs" -> liste de block
+
+"Wallet" -> comporte l'identifiant unique d'un utilisateur ("unique_id")
+
+classe "Block" -> gère l'ensemble des blocs (?)
+
+
+>>>> BDD partagée et décentralisée >>>>
+Accessible , dupliquée et connue de tout les utilisateurs
+-> Ensemble des informations sauvegarder dans le dossier "content"
+
+-> séparé en plusieurs sous-dossier (avec fichier JSON)
+-> dossier "wallets" : stocke les wallets et informations afférentes
+-> dossier "blocs" : stock les informations contenues dans les blocs
+
+
+>>>> Génération d'un identifiant unique du Wallet >>>>
+-> méthode "generate_unique_id()" ---> use librairie "uuid"
+
+Information propre aux wallet :
+/ identifiant unique
+/ solde du portefeuille (attribut "balance")(nombre)
+/ historique des transactions (attribut "history")(liste)
+
+Méthode Wallet : 
+"add_balance()" : ajoute un montant à balance
+"sub_balance()" : déduis un montant à balance
+"send()" : ajout d'une transaction dans l'historique (pass)
+
+Sauvegarde des Wallet --> format JSON
+-> convertir l'objet wallet au format JSON
+-> sauvegardé dans "content/wallet"
+-> nom du fichier correspondant à l'identifiant unique du wallet
+-> integration des information dans le ficheir JSON
+----> via la méthode "save()"
+
+----> "laod() -> chargement de l'objet wallet à partir d'un ficheir JSON
+
+-> méthode de génération des identifiants unique à revoir
+--> ajout d'une verification pour éviter la création de 2 wallet ayant le même identifiant
+
+
+>>>> Implementaiton des Blocs >>>>
+blocs :
+/ une taille (n’excède pas 256 000 octets) (sauvegarde format JSON)
+/ un nom (HASH en SHA256)
+/ un parent (bloc auquel est rattachéun nouveau bloc)
+/ une liste de transactions
+
+Attribut :
+/ "base_hash": nombre de base que vous avez utilisez afin d’obtenir votre “hash”
+/ "hash": résultat du hashage de votre chaîne de caractère
+/ "parent_hash": hash du bloc parent
+/ "transactions": liste des transactions réalisées etenregistrées au sein du bloc
+
+Méthode :
+/ "check_hash()" : verifie le "hash" en fonction de "base_hash"
+/ "add_transaction()" : ajout une transaction au bloc -> wallet emetteur, wallet récepteur et un montant
+/ "get_transaction()" : récupère une transaction par rapport à son numéro
+/ "get_weight()" : recupération du poids total du bloc
+/ "save()"
+/ "load()"
+hashage : SHA256 -> librairie "hashlib"
+
+
+
+>>>> Implémentaiton des Chaines >>>>
+
+Attribut : 
+/ blocks : liste des blocs au sein de la chaînes
+/ last_transaction_number : dernier numéro de transaction enregistré
+
+Méthodes :
+/ "generate_hash()" : Import hashlibhash = hashlib.sha256("a".encode()).hexdigest()
+
+Dans l’exemple ci-dessus, c’est la lettre “a” qui est hashée, c’est donc celle-ci que vous devrez remplacer par une autre chaîne de caractère afin de déterminer si vous remplissez les conditions pour trouver un nouveau bloc.
+
+/ "verify_hash()" : vérifie si un hash correspond aux cirtères de la chaine :
+--> le hash ne doit pas déjà exister
+--> le hash doit commencer par 0000
+
+/ "add_block()" : 
+/ "get_block()" : 
+/ "add_transaction()" : 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
